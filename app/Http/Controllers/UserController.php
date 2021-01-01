@@ -2,12 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
+
+    public function __construct(){
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,10 +20,14 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::get();
-        return view('login', [
-            'users' => $users
-        ]);
+        $user = Auth::user();
+        if ($user->role_id === 1) {
+            return view('admin', [
+            'user' => $user
+            ]);
+        }else{
+            return redirect()->route('home')->with('alert', 'You are not an admin');
+        }
     }
 
     /**
@@ -39,25 +48,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //getting input from login page
-        $email_input = $request->input('email');
-        $password_input = $request->input('password');
 
-        //finding spesific record in database
-        $user = User::where('email', '=', $email_input)->first();
-
-        // if there is no such a record user leads back to login page. if there
-        if (is_null($user)) {
-            return view('login', [
-            ]);
-        }
-        if ($user->email == $email_input && $user->password == $password_input) {
-            return view('userpage', [
-                'user' => $user
-            ]);
-        }else {
-            return view('login');
-        }
     }
 
     /**
@@ -68,7 +59,10 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        //
+        $user = Auth::user();
+        return view('userpage', [
+            'user' => $user
+        ]);
     }
 
     /**

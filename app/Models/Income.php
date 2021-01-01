@@ -10,7 +10,7 @@ class Income extends Model
     use HasFactory;
     public function incometype()
     {
-    	return $this->hasOne('App\Models\Incometype');
+    	return $this->belongsTo('App\Models\Incometype');
     }
 
     public function apartment()

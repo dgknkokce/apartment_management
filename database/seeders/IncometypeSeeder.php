@@ -21,5 +21,11 @@ class IncometypeSeeder extends Seeder
         	'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
 			'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
+        DB::table('incometypes')->insert([
+            'id' => 2,
+            'subject' => 'Water',
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
     }
 }

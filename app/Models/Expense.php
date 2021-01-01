@@ -10,7 +10,7 @@ class Expense extends Model
     use HasFactory;
     public function expensetype()
     {
-    	return $this->hasOne('App\Models\Expensetype');
+    	return $this->belongsTo('App\Models\Expensetype');
     }
 
     public function apartment()
