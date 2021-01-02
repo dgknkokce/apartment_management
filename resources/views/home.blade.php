@@ -35,15 +35,16 @@
                 <div class="card-header"><h2>Your Apartment's Incomes</h2></div>
                 <div class="card-body">
                     @foreach($user->apartment->incomes as $income)
-                    Your apartment's income {{ $income->amount }}, Subject: {{ $income->incometype->subject }}</br>
+                    Your apartment's income {{ $income->amount }}, Subject: {{ $income->incometype->subject }}, Date: {{$income->created_at}}</br>
                     @endforeach
                 </div>
 
                 <div class="card-header"><h2>Your Apartment's Expenses</h2></div>
                 <div class="card-body">
                     @foreach($user->apartment->expenses as $expense)
-                    Your apartment's expense {{ $expense->amount }}, Subject: {{ $expense->expensetype->subject }}</br>
+                    Your apartment's expense {{ $expense->amount }}, Subject: {{ $expense->expensetype->subject }}, Date: {{$expense->created_at}}</br>
                     @endforeach
+
                 </div>
             </div>
         </div>

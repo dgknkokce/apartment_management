@@ -20,10 +20,12 @@ class UserController extends Controller
      */
     public function index()
     {
+        $users = User::get();
         $user = Auth::user();
         if ($user->role_id === 1) {
             return view('admin', [
-            'user' => $user
+            'user' => $user,
+            'users' => $users
             ]);
         }else{
             return redirect()->route('home')->with('alert', 'You are not an admin');

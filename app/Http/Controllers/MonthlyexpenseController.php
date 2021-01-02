@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Incometype;
+use App\Models\Monthlyexpense;
 use Illuminate\Http\Request;
 
-class IncometypeController extends Controller
+class MonthlyexpenseController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class IncometypeController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Incometype  $incometype
+     * @param  \App\Models\Monthlyexpense  $monthlyexpense
      * @return \Illuminate\Http\Response
      */
-    public function show(Incometype $incometype)
+    public function show(Monthlyexpense $monthlyexpense)
     {
         //
     }
@@ -52,10 +52,10 @@ class IncometypeController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Incometype  $incometype
+     * @param  \App\Models\Monthlyexpense  $monthlyexpense
      * @return \Illuminate\Http\Response
      */
-    public function edit(Incometype $incometype)
+    public function edit(Monthlyexpense $monthlyexpense)
     {
         //
     }
@@ -64,10 +64,10 @@ class IncometypeController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Incometype  $incometype
+     * @param  \App\Models\Monthlyexpense  $monthlyexpense
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Incometype $incometype)
+    public function update(Request $request, Monthlyexpense $monthlyexpense)
     {
         //
     }
@@ -75,10 +75,10 @@ class IncometypeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Incometype  $incometype
+     * @param  \App\Models\Monthlyexpense  $monthlyexpense
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Incometype $incometype)
+    public function destroy(Monthlyexpense $monthlyexpense)
     {
         //
     }

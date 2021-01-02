@@ -15,14 +15,12 @@ class CreateExpensesTable extends Migration
     {
         Schema::create('expenses', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('expensetype_id')->constrained()->onDelete('restrict');
-            $table->foreignId('apartment_id')->constrained()->onDelete('restrict');
+            $table->foreignId('monthlyexpense_id')->constrained()->onDelete('restrict');
+            $table->string('name');
             $table->bigInteger('amount');
             $table->timestamps();
         });
-        Artisan::call('db:seed', [
-            '--class' => ExpenseSeeder::class
-        ]);
+
     }
 
     /**

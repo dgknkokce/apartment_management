@@ -15,6 +15,11 @@ class User extends Authenticatable
     	return $this->hasOne('App\Models\Role');
     }
 
+    public function dues()
+    {
+        return $this->hasMany('App\Models\Due');
+    }
+
     public function apartment()
     {
     	return $this->belongsTo('App\Models\Apartment');

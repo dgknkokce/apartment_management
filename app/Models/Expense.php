@@ -8,13 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Expense extends Model
 {
     use HasFactory;
-    public function expensetype()
+    public function monthlyexpense()
     {
-    	return $this->belongsTo('App\Models\Expensetype');
-    }
-
-    public function apartment()
-    {
-    	return $this->hasOne('App\Models\Apartment');
+        return $this->belongsTo('App\Models\Monthlyexpense');
     }
 }

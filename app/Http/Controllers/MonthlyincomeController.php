@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Expensetype;
+use App\Models\Monthlyincome;
 use Illuminate\Http\Request;
 
-class ExpensetypeController extends Controller
+class MonthlyincomeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class ExpensetypeController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Expensetype  $expensetype
+     * @param  \App\Models\Monthlyincome  $monthlyincome
      * @return \Illuminate\Http\Response
      */
-    public function show(Expensetype $expensetype)
+    public function show(Monthlyincome $monthlyincome)
     {
         //
     }
@@ -52,10 +52,10 @@ class ExpensetypeController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Expensetype  $expensetype
+     * @param  \App\Models\Monthlyincome  $monthlyincome
      * @return \Illuminate\Http\Response
      */
-    public function edit(Expensetype $expensetype)
+    public function edit(Monthlyincome $monthlyincome)
     {
         //
     }
@@ -64,10 +64,10 @@ class ExpensetypeController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Expensetype  $expensetype
+     * @param  \App\Models\Monthlyincome  $monthlyincome
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Expensetype $expensetype)
+    public function update(Request $request, Monthlyincome $monthlyincome)
     {
         //
     }
@@ -75,10 +75,10 @@ class ExpensetypeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Expensetype  $expensetype
+     * @param  \App\Models\Monthlyincome  $monthlyincome
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Expensetype $expensetype)
+    public function destroy(Monthlyincome $monthlyincome)
     {
         //
     }

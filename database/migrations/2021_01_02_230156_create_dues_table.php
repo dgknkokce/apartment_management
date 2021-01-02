@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateIncomesTable extends Migration
+class CreateDuesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,13 @@ class CreateIncomesTable extends Migration
      */
     public function up()
     {
-        Schema::create('incomes', function (Blueprint $table) {
+        Schema::create('dues', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('incometype_id')->constrained()->onDelete('restrict');
-            $table->foreignId('apartment_id')->constrained()->onDelete('restrict');
+            $table->foreignId('user_id')->constrained()->onDelete('restrict');
+            $table->foreignId('monthlyincome_id')->constrained()->onDelete('restrict');
             $table->bigInteger('amount');
             $table->timestamps();
         });
-        Artisan::call('db:seed', [
-            '--class' => IncomeSeeder::class
-        ]);
     }
 
     /**
@@ -32,6 +29,6 @@ class CreateIncomesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('incomes');
+        Schema::dropIfExists('dues');
     }
 }

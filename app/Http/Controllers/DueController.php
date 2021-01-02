@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Income;
+use App\Models\Due;
 use Illuminate\Http\Request;
 
-class IncomeController extends Controller
+class DueController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class IncomeController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Income  $income
+     * @param  \App\Models\Due  $due
      * @return \Illuminate\Http\Response
      */
-    public function show(Income $income)
+    public function show(Due $due)
     {
         //
     }
@@ -52,10 +52,10 @@ class IncomeController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Income  $income
+     * @param  \App\Models\Due  $due
      * @return \Illuminate\Http\Response
      */
-    public function edit(Income $income)
+    public function edit(Due $due)
     {
         //
     }
@@ -64,10 +64,10 @@ class IncomeController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Income  $income
+     * @param  \App\Models\Due  $due
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Income $income)
+    public function update(Request $request, Due $due)
     {
         //
     }
@@ -75,10 +75,10 @@ class IncomeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Income  $income
+     * @param  \App\Models\Due  $due
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Income $income)
+    public function destroy(Due $due)
     {
         //
     }

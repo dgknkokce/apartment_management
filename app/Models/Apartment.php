@@ -13,14 +13,14 @@ class Apartment extends Model
     	return $this->hasMany('App\Models\User');
     }
 
-    public function incomes()
+    public function monthlyincome()
     {
-    	return $this->hasMany('App\Models\Income');
+    	return $this->hasMany('App\Models\Monthlyincome');
     }
 
-    public function expenses()
+    public function monthlyexpense()
     {
-    	return $this->hasMany('App\Models\Expense');
+    	return $this->hasMany('App\Models\Monthlyexpense');
     }
 
     public function announcements()

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateIncometypesTable extends Migration
+class CreateMonthlyexpensesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,13 @@ class CreateIncometypesTable extends Migration
      */
     public function up()
     {
-        Schema::create('incometypes', function (Blueprint $table) {
+        Schema::create('monthlyexpenses', function (Blueprint $table) {
             $table->id();
-            $table->string('subject');
+            $table->foreignId('apartment_id')->constrained()->onDelete('restrict');
+            $table->bigInteger('totalexpense');
+            //composite key
             $table->timestamps();
         });
-        Artisan::call('db:seed', [
-            '--class' => IncometypeSeeder::class
-        ]);
     }
 
     /**
@@ -30,6 +29,6 @@ class CreateIncometypesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('incometypes');
+        Schema::dropIfExists('monthlyexpenses');
     }
 }

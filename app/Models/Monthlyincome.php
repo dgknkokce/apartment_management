@@ -5,16 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Income extends Model
+class Monthlyincome extends Model
 {
     use HasFactory;
-    public function incometype()
+    public function dues()
     {
-    	return $this->belongsTo('App\Models\Incometype');
+        return $this->hasMany('App\Models\Due');
     }
-
     public function apartment()
     {
-    	return $this->hasOne('App\Models\Apartment');
+        return $this->belongsTo('App\Models\Apartment');
     }
 }
