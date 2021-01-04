@@ -26,25 +26,43 @@
 
                 <div class="card-header"><h2>Your Information</h2></div>
                 <div class="card-body">
-                    Your telephone number: {{$user->tel_no}}<br>
-                    Your email: {{$user->email}}<br>
-                    Your flat number: {{$user->flat_no}}<br>
-                    Your payment type: {{$user->payment_type}}<br>
+                    Fullname: {{$user->fullname}}<br>
+                    Telephone Number: {{$user->tel_no}}<br>
+                    Email: {{$user->email}}<br>
+                    Flat Number: {{$user->flat_no}}<br>
+                    Payment Type: {{$user->payment_type}}<br>
                 </div>
 
                 <div class="card-header"><h2>Your Apartment's Incomes</h2></div>
                 <div class="card-body">
-                    @foreach($user->apartment->incomes as $income)
-                    Your apartment's income {{ $income->amount }}, Subject: {{ $income->incometype->subject }}, Date: {{$income->created_at}}</br>
+                    @foreach($user->apartment->monthlyincomes as $monthlyincome)
+                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample{{ $monthlyincome->date }}" aria-expanded="false" aria-controls="collapseExample">
+                        {{ $monthlyincome->date }}
+                    </button><br>
+                    <div class="collapse" id="collapseExample{{ $monthlyincome->date }}">
+                      <div class="card card-body">
+                        {{ $monthlyincome->totalincome }}
+                      </div>
+                    </div>
                     @endforeach
                 </div>
 
                 <div class="card-header"><h2>Your Apartment's Expenses</h2></div>
                 <div class="card-body">
-                    @foreach($user->apartment->expenses as $expense)
-                    Your apartment's expense {{ $expense->amount }}, Subject: {{ $expense->expensetype->subject }}, Date: {{$expense->created_at}}</br>
+                    @foreach($user->apartment->monthlyexpenses as $monthlyexpense)
+                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample{{ $monthlyexpense->date }}" aria-expanded="false" aria-controls="collapseExample">
+                        {{ $monthlyexpense->date }}
+                    </button><br>
+                    <div class="collapse" id="collapseExample{{ $monthlyexpense->date }}">
+                      <div class="card card-body">
+                        @foreach($monthlyexpense->expenses as $expense)
+                        Subject:{{ $expense->name }}, Amount:{{ $expense->amount }}<br>
+                        @endforeach
+                      </div>
+                    </div>
                     @endforeach
-
+                    <button type="button" class="btn btn-dark btn-block" onclick="location.href='{{ url('/expenses/create') }}'">Add Expense
+                    </button>
                 </div>
             </div>
         </div>

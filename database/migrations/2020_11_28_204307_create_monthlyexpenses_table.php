@@ -17,7 +17,8 @@ class CreateMonthlyexpensesTable extends Migration
             $table->id();
             $table->foreignId('apartment_id')->constrained()->onDelete('restrict');
             $table->bigInteger('totalexpense');
-            //composite key
+            $table->tinyInteger('date');
+            $table->unique(["apartment_id","date"],'expense_check_unique');
             $table->timestamps();
         });
     }

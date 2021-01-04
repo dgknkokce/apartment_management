@@ -24,7 +24,7 @@ class ExpenseController extends Controller
      */
     public function create()
     {
-        //
+        return view('expenses.create');
     }
 
     /**
@@ -35,7 +35,13 @@ class ExpenseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $expense = new Expense();
+
+        $expense->name = request('name');
+        $expense->amount = request('amount');
+
+        $expense->save();
+        return redirect('/admin');
     }
 
     /**

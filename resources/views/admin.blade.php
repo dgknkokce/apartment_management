@@ -11,13 +11,21 @@
 	</div>
 	<div class="card">
 		<div class="card-header"><h2>All Users(including YOU)</h2></div>
+		@foreach($users as $user)
 		<div class="card-body">
-			<ul class="list-group">
-				@foreach($users as $user)
-					<li class="list-group-item">{{ $user->fullname }}</br></li>
-	            @endforeach
-			</ul>
-        </div>
+			Fullname: {{$user->fullname}}<br>
+            Telephone Number: {{$user->tel_no}}<br>
+            Email: {{$user->email}}<br>
+            Flat Number: {{$user->flat_no}}<br>
+            Payment Type: {{$user->payment_type}}<br>
+
+            @if($user->dues->amount === 0)
+            	Monthly Due Check: Not Payed
+            @else
+            	Monthly Due Check: Payed
+            @endif
+		</div>
+        @endforeach
 	</div>
 </div>
 

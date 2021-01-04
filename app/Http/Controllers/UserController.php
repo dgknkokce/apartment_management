@@ -22,7 +22,7 @@ class UserController extends Controller
     {
         $users = User::get();
         $user = Auth::user();
-        if ($user->role_id === 1) {
+        if ($user->role_id === 2) {
             return view('admin', [
             'user' => $user,
             'users' => $users

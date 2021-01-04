@@ -17,9 +17,13 @@ class CreateMonthlyincomesTable extends Migration
             $table->id();
             $table->foreignId('apartment_id')->constrained()->onDelete('restrict');
             $table->bigInteger('totalincome');
-            //composite key
+            $table->tinyInteger('date');
+            $table->unique(["apartment_id","date"],'income_check_unique');
             $table->timestamps();
         });
+        Artisan::call('db:seed', [
+            '--class' => MonthlyincomeSeeder::class
+        ]);
     }
 
     /**
