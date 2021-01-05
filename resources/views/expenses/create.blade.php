@@ -19,8 +19,17 @@
 				<label class="label" for="amount">Amount</label>
 
 				<div class="control">
-					<input class="input" type="text" name="amount" id="amount">
+					<input class="input" type="number" name="amount" id="amount">
 				</div>
+			</div>
+
+			<div class="field">
+
+				<select id="monthlyexpense" type="select" class="form-control @error('monthlyexpense') is-invalid @enderror" name="monthlyexpense">
+					@foreach($user->apartment->monthlyexpenses as $monthlyexpense)
+					<option name="{{$monthlyexpense->id}}" id="{{$monthlyexpense->id}}">{{ $monthlyexpense->date }}</option>
+					@endforeach
+                </select>
 			</div>
 
 			<div class="field is-grouped">

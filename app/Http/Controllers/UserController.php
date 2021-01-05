@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Auth;
+use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -39,7 +40,16 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        $apartment = Auth::user()->apartment();
+        $user = Auth::user();
+        if ($user->role_id === 2){
+            return view('users.create', [
+            'apartment' => $apartment
+            ]);
+            return view('users.create');
+        }else{
+            return redirect()->route('home')->with('alert', 'You are not an admin');
+        }
     }
 
     /**
@@ -50,7 +60,25 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate(request(), [
+            'name' => 'required',
+            'email' => 'required|email',
+            'password' => 'required'
+        ]);
 
+
+        $user = new User();
+        $user->apartment_id = Auth::user()->apartment->apartment_id
+        $user->role_id = 2;
+        $user->fullname = request('name');
+        $user->tel_no = request('tel_no');
+        $user->email = request('email');
+        $user->password = request(Hash::make('password'));
+        $user->flat_no = request('flat_no');
+        $user->payment_type = request('payment_type');
+        $user->save();
+
+        return redirect()->route('home')->with('alert', 'You are not an admin');
     }
 
     /**
@@ -61,10 +89,6 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        $user = Auth::user();
-        return view('userpage', [
-            'user' => $user
-        ]);
     }
 
     /**

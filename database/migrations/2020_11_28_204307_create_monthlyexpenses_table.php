@@ -21,6 +21,9 @@ class CreateMonthlyexpensesTable extends Migration
             $table->unique(["apartment_id","date"],'expense_check_unique');
             $table->timestamps();
         });
+        Artisan::call('db:seed', [
+            '--class' => MonthlyexpenseSeeder::class
+        ]);
     }
 
     /**

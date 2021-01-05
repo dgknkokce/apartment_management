@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use App\Models\Expense;
 use Illuminate\Http\Request;
+use Auth;
 
 class ExpenseController extends Controller
 {
@@ -12,6 +14,10 @@ class ExpenseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
         //
@@ -24,7 +30,16 @@ class ExpenseController extends Controller
      */
     public function create()
     {
-        return view('expenses.create');
+        $user = Auth::user();
+        $monthlyexpenses = Auth::user()->apartment->monthlyexpenses();
+        if ($user->role_id === 2) {
+            return view('expenses.create', [
+            'monthlyexpenses' => $monthlyexpenses,
+            'user' => $user
+            ]);
+        }else{
+            return redirect()->route('home')->with('alert', 'You are not an admin');
+        }
     }
 
     /**
@@ -35,13 +50,15 @@ class ExpenseController extends Controller
      */
     public function store(Request $request)
     {
-        $expense = new Expense();
 
+        $expense = new Expense();
+        $expense->monthlyexpense_id = request('monthlyexpense');
         $expense->name = request('name');
         $expense->amount = request('amount');
 
         $expense->save();
-        return redirect('/admin');
+        $monthlyexpense = DB::table('monthlyexpenses')->where('id', '{{$expense->monthlyexpense_id}}')->first();
+        $monthlyexpense->amount +=  $expense->amount
     }
 
     /**

@@ -18,12 +18,6 @@
             Email: {{$user->email}}<br>
             Flat Number: {{$user->flat_no}}<br>
             Payment Type: {{$user->payment_type}}<br>
-
-            @if($user->dues->amount === 0)
-            	Monthly Due Check: Not Payed
-            @else
-            	Monthly Due Check: Payed
-            @endif
 		</div>
         @endforeach
 	</div>

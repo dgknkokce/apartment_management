@@ -61,8 +61,11 @@
                       </div>
                     </div>
                     @endforeach
+
+                    @if ($user->role_id === 2)
                     <button type="button" class="btn btn-dark btn-block" onclick="location.href='{{ url('/expenses/create') }}'">Add Expense
                     </button>
+                    @endif
                 </div>
             </div>
         </div>
