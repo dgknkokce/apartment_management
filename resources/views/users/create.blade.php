@@ -95,8 +95,7 @@
                             <div class="col-md-6">
 
                                 <select id="apartment" type="select" class="form-control @error('apartment') is-invalid @enderror" name="apartment" value="{{ old('apartment') }}">
-                                    <option value="1" id="1">Dodolita</option>
-                                    <option value="2" id="2">Kepler</option>
+                                    <option value="{{$apartment->id}}" id="{{$apartment->id}}">{{$apartment->id}}</option>
                                 </select>
 
                                 @error('apartment')

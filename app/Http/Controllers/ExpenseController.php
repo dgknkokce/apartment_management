@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
 use App\Models\Expense;
+use App\Models\Monthlyexpense;
 use Illuminate\Http\Request;
 use Auth;
 
@@ -32,7 +33,7 @@ class ExpenseController extends Controller
     {
         $user = Auth::user();
         $monthlyexpenses = Auth::user()->apartment->monthlyexpenses();
-        if ($user->role_id === 2) {
+        if ($user->role_id === 1) {
             return view('expenses.create', [
             'monthlyexpenses' => $monthlyexpenses,
             'user' => $user
@@ -57,8 +58,9 @@ class ExpenseController extends Controller
         $expense->amount = request('amount');
 
         $expense->save();
-        $monthlyexpense = DB::table('monthlyexpenses')->where('id', '{{$expense->monthlyexpense_id}}')->first();
-        $monthlyexpense->amount +=  $expense->amount
+        $monthlyexpense = $expense->monthlyexpense;
+        $monthlyexpense->totalexpense +=  $expense->amount;
+        return redirect()->route('home')->with('alert', 'New Expense Added');
     }
 
     /**

@@ -23,7 +23,7 @@ class UserController extends Controller
     {
         $users = User::get();
         $user = Auth::user();
-        if ($user->role_id === 2) {
+        if ($user->role_id === 1) {
             return view('admin', [
             'user' => $user,
             'users' => $users
@@ -40,9 +40,9 @@ class UserController extends Controller
      */
     public function create()
     {
-        $apartment = Auth::user()->apartment();
+        $apartment = Auth::user()->apartment;
         $user = Auth::user();
-        if ($user->role_id === 2){
+        if ($user->role_id === 1){
             return view('users.create', [
             'apartment' => $apartment
             ]);
@@ -68,17 +68,17 @@ class UserController extends Controller
 
 
         $user = new User();
-        $user->apartment_id = Auth::user()->apartment->apartment_id
-        $user->role_id = 2;
+        $user->apartment_id = request('apartment');
         $user->fullname = request('name');
         $user->tel_no = request('tel_no');
         $user->email = request('email');
-        $user->password = request(Hash::make('password'));
+        $user->password = Hash::make(request('password'));
         $user->flat_no = request('flat_no');
         $user->payment_type = request('payment_type');
+        $user->role_id = 2;
         $user->save();
 
-        return redirect()->route('home')->with('alert', 'You are not an admin');
+        return redirect()->route('home')->with('alert', 'User Created Succesfully');
     }
 
     /**

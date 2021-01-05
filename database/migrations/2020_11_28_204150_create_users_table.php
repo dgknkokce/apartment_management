@@ -25,6 +25,9 @@ class CreateUsersTable extends Migration
             $table->string('payment_type');
             $table->timestamps();
         });
+        Artisan::call('db:seed', [
+            '--class' => UserSeeder::class
+        ]);
     }
 
     /**

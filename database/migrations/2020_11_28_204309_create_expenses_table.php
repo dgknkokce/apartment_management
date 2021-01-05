@@ -20,6 +20,9 @@ class CreateExpensesTable extends Migration
             $table->bigInteger('amount');
             $table->timestamps();
         });
+        Artisan::call('db:seed', [
+            '--class' => ExpenseSeeder::class
+        ]);
 
     }
 

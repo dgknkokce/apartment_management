@@ -31,5 +31,85 @@ class MonthlyexpenseSeeder extends Seeder
         	'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
 			'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
+        DB::table('monthlyexpenses')->insert([
+            'id' => 3,
+            'apartment_id' => 1,
+            'totalexpense' => 100,
+            'date' => 3,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+        DB::table('monthlyexpenses')->insert([
+            'id' => 4,
+            'apartment_id' => 1,
+            'totalexpense' => 100,
+            'date' => 4,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+        DB::table('monthlyexpenses')->insert([
+            'id' => 5,
+            'apartment_id' => 1,
+            'totalexpense' => 100,
+            'date' => 5,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+        DB::table('monthlyexpenses')->insert([
+            'id' => 6,
+            'apartment_id' => 1,
+            'totalexpense' => 100,
+            'date' => 6,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+        DB::table('monthlyexpenses')->insert([
+            'id' => 7,
+            'apartment_id' => 1,
+            'totalexpense' => 100,
+            'date' => 7,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+        DB::table('monthlyexpenses')->insert([
+            'id' => 8,
+            'apartment_id' => 1,
+            'totalexpense' => 100,
+            'date' => 8,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+        DB::table('monthlyexpenses')->insert([
+            'id' => 9,
+            'apartment_id' => 1,
+            'totalexpense' => 100,
+            'date' => 9,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+        DB::table('monthlyexpenses')->insert([
+            'id' => 10,
+            'apartment_id' => 1,
+            'totalexpense' => 100,
+            'date' => 10,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+        DB::table('monthlyexpenses')->insert([
+            'id' => 11,
+            'apartment_id' => 1,
+            'totalexpense' => 100,
+            'date' => 11,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+        DB::table('monthlyexpenses')->insert([
+            'id' => 12,
+            'apartment_id' => 1,
+            'totalexpense' => 100,
+            'date' => 12,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
     }
 }
