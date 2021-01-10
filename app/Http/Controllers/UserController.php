@@ -117,11 +117,16 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\User  $user
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy($id)
     {
-        //
+        $user = User::find($id);
+        if (Auth::user()->id == $id) {
+            return redirect()->route('admin')->with('error', 'You cant Move Out Yourself');
+        }
+        $user->delete();
+        return redirect()->route('admin')->with('success', 'User Moved Succesfully');
     }
 }

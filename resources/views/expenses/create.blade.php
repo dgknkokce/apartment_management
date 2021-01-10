@@ -11,7 +11,12 @@
 				<label class="label" for="name">Name</label>
 
 				<div class="control">
-					<input class="input" type="text" name="name" id="name">
+					<input class="form-control @error('name') is-invalid @enderror" type="text" name="name" id="name">
+					@error('name')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
 				</div>
 			</div>
 
@@ -19,7 +24,12 @@
 				<label class="label" for="amount">Amount</label>
 
 				<div class="control">
-					<input class="input" type="number" name="amount" id="amount">
+					<input class="form-control @error('amount') is-invalid @enderror" type="number" name="amount" id="amount">
+					@error('amount')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
 				</div>
 			</div>
 
@@ -30,6 +40,11 @@
 					<option name="{{$monthlyexpense->id}}" id="{{$monthlyexpense->id}}">{{ $monthlyexpense->date }}</option>
 					@endforeach
                 </select>
+                @error('monthlyexpense')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                @enderror
 			</div>
 
 			<div class="field is-grouped">
