@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Due;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Auth;
+
+
 
 class DueController extends Controller
 {
@@ -14,7 +18,16 @@ class DueController extends Controller
      */
     public function index()
     {
-        //
+        $user = Auth::user();
+        $unpayeddues = Due::where('status', false)->get();
+
+        if ($user->role_id === 1) {
+            return view('dues.index', [
+            'unpayeddues' => $unpayeddues
+            ]);
+        }else{
+            return redirect()->route('home')->with('alert', 'You are not an admin');
+        }
     }
 
     /**
@@ -64,12 +77,15 @@ class DueController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Due  $due
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Due $due)
+    public function update($id)
     {
-        //
+        $due = Due::find($id);
+        $due->status = true;
+        $due->save();
+        return redirect()->route('dues.index')->with('success', 'Due of {{ $due->user->fullname }} payed successfully');
     }
 
     /**

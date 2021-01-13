@@ -10,6 +10,11 @@
         </div>
 	</div>
 	<div class="card">
+		<div class="card-header"><h2>Manage Unpayed Dues</h2></div>
+		<div class="card-body">
+			<button type="button" class="btn btn-dark btn-block" onclick="location.href='{{ url('dues') }}'">Manage Unpayed Dues
+            </button>
+		</div>
 		<div class="card-header"><h2>All Users(including YOU)</h2></div>
 		@foreach($users as $user)
 		<div class="card-body">

@@ -18,8 +18,12 @@ class CreateDuesTable extends Migration
             $table->foreignId('user_id')->constrained()->onDelete('restrict');
             $table->foreignId('monthlyincome_id')->constrained()->onDelete('restrict');
             $table->bigInteger('amount');
+            $table->boolean('status');
             $table->timestamps();
         });
+        Artisan::call('db:seed', [
+            '--class' => DueSeeder::class
+        ]);
     }
 
     /**

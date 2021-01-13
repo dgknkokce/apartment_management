@@ -23,6 +23,8 @@ Route::resource('/expenses', 'App\Http\Controllers\ExpenseController');
 //Route::resource('/users/create', 'App\Http\Controllers\UserController');
 Route::resource('/users', 'App\Http\Controllers\UserController');
 //Route::resource('/users/{user}', 'App\Http\Controllers\UserController');
+Route::resource('/dues', 'App\Http\Controllers\DueController');
+
 
 
 

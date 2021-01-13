@@ -33,6 +33,26 @@
                     Payment Type: {{$user->payment_type}}<br>
                 </div>
 
+                <div class="card-header"><h2>Your Unpayed Dues</h2></div>
+                @foreach($user->dues as $due)
+                <div class="card-body">
+                    <table class="table">
+                        <tr>
+                            <th scope="col">Amount</th>
+                            <th scope="col">Date</th>
+                        </tr>
+                        <tbody>
+                            <tr>
+                                @if($due->status === false)
+                                    <th>{{ $unpayeddue->amount }}</th>
+                                    <th>{{ $unpayeddue->monthlyincome->date }}</th>
+                                @endif
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                @endforeach
+
                 <div class="card-header"><h2>Your Apartment's Incomes</h2></div>
                 <div class="card-body">
                     @foreach($user->apartment->monthlyincomes as $monthlyincome)
