@@ -29,7 +29,7 @@ class UserController extends Controller
             'users' => $users
             ]);
         }else{
-            return redirect()->route('home')->with('alert', 'You are not an admin');
+            return redirect()->route('home')->with('error', 'You are not an admin');
         }
     }
 
@@ -48,7 +48,7 @@ class UserController extends Controller
             ]);
             return view('users.create');
         }else{
-            return redirect()->route('home')->with('alert', 'You are not an admin');
+            return redirect()->route('home')->with('error', 'You are not an admin');
         }
     }
 
@@ -78,7 +78,7 @@ class UserController extends Controller
         $user->role_id = 2;
         $user->save();
 
-        return redirect()->route('home')->with('alert', 'User Created Succesfully');
+        return redirect()->route('admin')->with('success', 'User Created Succesfully');
     }
 
     /**

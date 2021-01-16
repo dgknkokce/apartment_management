@@ -15,6 +15,15 @@
 			<button type="button" class="btn btn-dark btn-block" onclick="location.href='{{ url('dues') }}'">Manage Unpayed Dues
             </button>
 		</div>
+
+		<div class="card-header"><h2>Add New User</h2></div>
+		<div class="card-body">
+			@if ($user->role_id === 1)
+            <button type="button" class="btn btn-dark btn-block" onclick="location.href='{{ url('/users/create') }}'">Add User
+            </button>
+            @endif
+		</div>
+
 		<div class="card-header"><h2>All Users(including YOU)</h2></div>
 		@foreach($users as $user)
 		<div class="card-body">
@@ -36,7 +45,7 @@
 						<th>{{ $user->created_at }}</th>
 						<th>
 							<form method="POST" action="/users/{{$user->id}}">
-								<input class="btn btn-danger btn-sm" type="submit" value="Delete"/>
+								<input class="btn btn-danger btn-sm" type="submit" value="Move Out"/>
 								@method('DELETE')
 								@csrf
 							</form>

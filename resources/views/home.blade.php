@@ -37,6 +37,7 @@
                 <div class="card-header"><h2>Your Unpayed Dues</h2></div>
                 @foreach($unpayeddues as $unpayeddue)
                 <div class="card-body">
+                    @if($unpayeddue->user_id === $user->id)
                     <table class="table">
                         <tr>
                             <th scope="col">Amount</th>
@@ -44,19 +45,18 @@
                         </tr>
                         <tbody>
                             <tr>
-                                @if($unpayeddue->user_id === $user->id)
-                                    <th>{{ $unpayeddue->amount }}</th>
-                                    <th>{{ $unpayeddue->monthlyincome->date }}</th>
-                                @endif
+                                <th>{{ $unpayeddue->amount }}</th>
+                                <th>{{ $unpayeddue->monthlyincome->date }}</th>
                             </tr>
                         </tbody>
                     </table>
+                    @endif
                 </div>
                 @endforeach
 
                 <div class="card-header"><h2>Your Apartment's Incomes</h2></div>
                 <div class="card-body">
-                    @foreach($user->apartment->monthlyincomes as $monthlyincome)
+                    @foreach($monthlyincomes as $monthlyincome)
                     <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample{{ $monthlyincome->date }}" aria-expanded="false" aria-controls="collapseExample">
                         {{ $monthlyincome->date }}
                     </button><br>
@@ -87,20 +87,9 @@
                     <button type="button" class="btn btn-dark btn-block" onclick="location.href='{{ url('/expenses/create') }}'">Add Expense
                     </button>
                     @endif
-                    @if ($user->role_id === 1)
-                    <button type="button" class="btn btn-dark btn-block" onclick="location.href='{{ url('/users/create') }}'">Add User
-                    </button>
-                    @endif
                 </div>
             </div>
         </div>
     </div>
-    <script>
-    var msg = '{{Session::get('alert')}}';
-    var exist = '{{Session::has('alert')}}';
-    if(exist){
-      alert(msg);
-    }
-  </script>
 </div>
 @endsection

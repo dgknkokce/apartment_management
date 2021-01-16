@@ -34,6 +34,7 @@
 			</div>
 
 			<div class="field">
+				<label class="label" for="monthlyexpense">Month</label>
 
 				<select id="monthlyexpense" type="select" class="form-control @error('monthlyexpense') is-invalid @enderror" name="monthlyexpense">
 					@foreach($user->apartment->monthlyexpenses as $monthlyexpense)
@@ -49,7 +50,7 @@
 
 			<div class="field is-grouped">
 				<div class="control">
-					<button class="button is-link" type="submit">Submit</button>
+					<button class="btn btn-primary" type="submit">Submit</button>
 				</div>
 			</div>
 

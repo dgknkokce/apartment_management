@@ -39,7 +39,7 @@ class ExpenseController extends Controller
             'user' => $user
             ]);
         }else{
-            return redirect()->route('home')->with('alert', 'You are not an admin');
+            return redirect()->route('home')->with('error', 'You are not an admin');
         }
     }
 
@@ -51,6 +51,11 @@ class ExpenseController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate(request(), [
+            'monthlyexpense' => 'required',
+            'name' => 'required',
+            'amount' => 'required'
+        ]);
 
         $expense = new Expense();
         $expense->monthlyexpense_id = request('monthlyexpense');
@@ -60,7 +65,7 @@ class ExpenseController extends Controller
         $expense->save();
         $monthlyexpense = $expense->monthlyexpense;
         $monthlyexpense->totalexpense +=  $expense->amount;
-        return redirect()->route('home')->with('alert', 'New Expense Added');
+        return redirect()->route('home')->with('success', 'New Expense Added');
     }
 
     /**

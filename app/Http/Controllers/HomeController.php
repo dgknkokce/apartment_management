@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Auth;
 use Illuminate\Http\Request;
 use App\Models\Due;
+use App\Models\Monthlyincome;
 
 
 class HomeController extends Controller
@@ -29,9 +30,26 @@ class HomeController extends Controller
 
         $user = Auth::user();
         $unpayeddues = Due::where('status', false)->get();
+        $payeddues = Due::where('status', true)->get();
+
+
+        //adding dues to spesific apartment's spesific monthlyincome
+        foreach ($payeddues as $payeddue) {
+            if ($payeddue->user->apartment->id === $user->apartment->id) {
+                foreach ($user->apartment->monthlyincomes as $monthlyincome) {
+                    if ($payeddue->monthlyincome_id === $monthlyincome->id) {
+                        $monthlyincome->totalincome += $payeddue->amount;
+                    }
+                }
+            }
+        }
+        $monthlyincomes = $user->apartment->monthlyincomes;
+
+
         return view('home', [
             'user' => $user,
-            'unpayeddues' => $unpayeddues
+            'unpayeddues' => $unpayeddues,
+            'monthlyincomes' => $monthlyincomes
         ]);
         //return view('home');
     }
