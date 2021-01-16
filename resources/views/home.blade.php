@@ -29,12 +29,13 @@
                     Fullname: {{$user->fullname}}<br>
                     Telephone Number: {{$user->tel_no}}<br>
                     Email: {{$user->email}}<br>
+                    Apartment: {{$user->apartment_id}}<br>
                     Flat Number: {{$user->flat_no}}<br>
                     Payment Type: {{$user->payment_type}}<br>
                 </div>
 
                 <div class="card-header"><h2>Your Unpayed Dues</h2></div>
-                @foreach($user->dues as $due)
+                @foreach($unpayeddues as $unpayeddue)
                 <div class="card-body">
                     <table class="table">
                         <tr>
@@ -43,7 +44,7 @@
                         </tr>
                         <tbody>
                             <tr>
-                                @if($due->status === false)
+                                @if($unpayeddue->user_id === $user->id)
                                     <th>{{ $unpayeddue->amount }}</th>
                                     <th>{{ $unpayeddue->monthlyincome->date }}</th>
                                 @endif

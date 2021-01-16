@@ -19,17 +19,26 @@ class DueSeeder extends Seeder
             'id' => 1,
             'user_id' => '1',
         	'monthlyincome_id' => 1,
-        	'amount' => 100,
+        	'amount' => 500,
         	'status' => false,
         	'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
 			'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
         DB::table('dues')->insert([
-            'id' => 2,
+            'id' => 3,
             'user_id' => '1',
-        	'monthlyincome_id' => 1,
+            'monthlyincome_id' => 1,
+            'amount' => 300,
+            'status' => false,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+        DB::table('dues')->insert([
+            'id' => 2,
+            'user_id' => '2',
+        	'monthlyincome_id' => 2,
         	'amount' => 100,
-        	'status' => true,
+        	'status' => false,
         	'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
 			'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);

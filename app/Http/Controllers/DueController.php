@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Due;
+use App\Models\Apartment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Auth;
@@ -20,10 +21,24 @@ class DueController extends Controller
     {
         $user = Auth::user();
         $unpayeddues = Due::where('status', false)->get();
+        $payeddues = Due::where('status', true)->get();
+
+        $totalUnpayeddue = 0;
+        foreach ($unpayeddues as $unpayeddue) {
+            $totalUnpayeddue += $unpayeddue->amount;
+        }
+        $totalPayeddue = 0;
+        foreach ($payeddues as $payeddue) {
+            $totalPayeddue += $payeddue->amount;
+        }
+
 
         if ($user->role_id === 1) {
             return view('dues.index', [
-            'unpayeddues' => $unpayeddues
+            'user' => $user,
+            'unpayeddues' => $unpayeddues,
+            'totalUnpayeddue' => $totalUnpayeddue,
+            'totalPayeddue' => $totalPayeddue,
             ]);
         }else{
             return redirect()->route('home')->with('alert', 'You are not an admin');
@@ -85,7 +100,8 @@ class DueController extends Controller
         $due = Due::find($id);
         $due->status = true;
         $due->save();
-        return redirect()->route('dues.index')->with('success', 'Due of {{ $due->user->fullname }} payed successfully');
+        return back();
+        //return redirect()->route('dues.index');
     }
 
     /**

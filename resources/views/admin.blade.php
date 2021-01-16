@@ -22,6 +22,7 @@
 				<tr>
 					<th scope="col">Full Name</th>
 					<th scope="col">Email</th>
+					<th scope="col">Apartment</th>
 					<th scope="col">Flat No</th>
 					<th scope="col">Join Date</th>
 					<th scope="col">Actions</th>
@@ -30,6 +31,7 @@
 					<tr>
 						<th>{{ $user->fullname }}</th>
 						<th>{{ $user->email }}</th>
+						<th>{{ $user->apartment_id }}</th>
 						<th>{{ $user->flat_no }}</th>
 						<th>{{ $user->created_at }}</th>
 						<th>

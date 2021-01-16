@@ -76,20 +76,6 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="flat_no" class="col-md-4 col-form-label text-md-right">{{ __('Flat Number') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="flat_no" type="number" class="form-control @error('flat_no') is-invalid @enderror" name="flat_no" value="{{ old('flat_no') }}" min="1" max="24">
-
-                                @error('flat_no')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
                             <label for="apartment" class="col-md-4 col-form-label text-md-right">{{ __('Apartment') }}</label>
 
                             <div class="col-md-6">
@@ -106,6 +92,22 @@
                                 @enderror
                             </div>
                         </div>
+
+                        <div class="form-group row">
+                            <label for="flat_no" class="col-md-4 col-form-label text-md-right">{{ __('Flat Number') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="flat_no" type="number" class="form-control @error('flat_no') is-invalid @enderror" name="flat_no" value="{{ old('flat_no') }}" min="1" max="24">
+
+                                @error('flat_no')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+
 
                         <div class="form-group row">
                             <label for="payment_type" class="col-md-4 col-form-label text-md-right">{{ __('Payment Type') }}</label>

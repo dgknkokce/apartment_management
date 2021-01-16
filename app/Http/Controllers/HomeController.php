@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Auth;
 use Illuminate\Http\Request;
+use App\Models\Due;
+
 
 class HomeController extends Controller
 {
@@ -26,8 +28,10 @@ class HomeController extends Controller
     {
 
         $user = Auth::user();
+        $unpayeddues = Due::where('status', false)->get();
         return view('home', [
-            'user' => $user
+            'user' => $user,
+            'unpayeddues' => $unpayeddues
         ]);
         //return view('home');
     }
