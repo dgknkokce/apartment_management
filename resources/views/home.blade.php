@@ -41,7 +41,7 @@
                     <table class="table">
                         <tr>
                             <th scope="col">Amount</th>
-                            <th scope="col">Date</th>
+                            <th scope="col">Month</th>
                         </tr>
                         <tbody>
                             <tr>
@@ -58,7 +58,7 @@
                 <div class="card-body">
                     @foreach($monthlyincomes as $monthlyincome)
                     <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample{{ $monthlyincome->date }}" aria-expanded="false" aria-controls="collapseExample">
-                        {{ $monthlyincome->date }}
+                       Month {{ $monthlyincome->date }}
                     </button><br>
                     <div class="collapse" id="collapseExample{{ $monthlyincome->date }}">
                       <div class="card card-body">
@@ -72,7 +72,7 @@
                 <div class="card-body">
                     @foreach($user->apartment->monthlyexpenses as $monthlyexpense)
                     <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample{{ $monthlyexpense->date }}" aria-expanded="false" aria-controls="collapseExample">
-                        {{ $monthlyexpense->date }}
+                        Month {{ $monthlyexpense->date }}
                     </button><br>
                     <div class="collapse" id="collapseExample{{ $monthlyexpense->date }}">
                       <div class="card card-body">

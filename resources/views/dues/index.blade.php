@@ -2,44 +2,81 @@
 
 @section('content')
 
+<script src="https://www.gstatic.com/charts/loader.js"></script>
+<script>
+    google.charts.load('current', {packages: ['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+      // Define the chart to be drawn.
+      var data = new google.visualization.DataTable();
+      data.addColumn('string', 'Element');
+      data.addColumn('number', 'Percentage');
+      data.addRows([
+        ['Payed', {{$totalPayeddue}}],
+        ['Unpayed', {{$totalUnpayeddue}}]
+      ]);
+
+      // Instantiate and draw the chart.
+      var chart = new google.visualization.PieChart(document.getElementById('myPieChart'));
+      chart.draw(data, null);
+    }
+</script>
+
+
+
 <div class="container">
 	<div class="card">
 
-
-		<script>
-			window.onload = function() {
-
-			var chart = new CanvasJS.Chart("chartContainer", {
-				animationEnabled: true,
-				title: {
-					text: "Due Chart of Months - 2021"
-				},
-				data: [{
-					type: "pie",
-					startAngle: 240,
-					yValueFormatString: "##0.00\"%\"",
-					indexLabel: "{label} {y}",
-					dataPoints: [
-						{y: {{$totalPayeddue}}/100, label: "Payed"},
-						{y: {{$totalUnpayeddue}}/100, label: "Unpayed"},
-					]
-				}]
-			});
-			chart.render();
-		}
-		</script>
-		<div id="chartContainer" style="height: 370px; width: 100%;"></div>
-		<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-
 		<div class="card-header"><h2>Unpayed Dues</h2></div>
 		<div class="card-body">
+			<div class="row justify-content-center">
+		        <div id='myPieChart'></div>
+		    </div>
+
+			<div class="row justify-content-center">
+		      <form class="form-inline py-3" method="GET" action="">
+
+		        <div class="form-group mx-5">
+		          	<label for="apartment">Apartment: </label>
+		          	<select name="apartment_id" id="apartment">
+		          		@foreach($apartments as $apartment)
+					    <option value="{{ $apartment->id }}">{{ $apartment->id }}</option>
+					    @endforeach
+				  	</select>
+		        </div>
+
+		        <div class="form-group mx-5">
+		          	<label for="apartment">Month: </label>
+		          	<select name="month" id="month">
+		          		@foreach($monthlyincomes as $monthlyincome)
+					    <option value="{{ $monthlyincome->date }}">{{ $monthlyincome->date }}</option>
+					    @endforeach
+				  	</select>
+		        </div>
+
+
+
+		        <div class="form-group mx-5">
+		          <input class="btn btn-primary" type="submit" value=Show>
+		        </div>
+
+		      </form>
+		  	</div>
+			<div id="myPieChart"/>
+		</div>
+
+
+
+		<div class="card-header"><h2>Unpayed Dues</h2></div>
+		<div class="card-body" >
 			@foreach($unpayeddues as $unpayeddue)
 			<table class="table">
 				<tr>
 					<th scope="col">Full Name</th>
 					<th scope="col">Apartment</th>
 					<th scope="col">Amount</th>
-					<th scope="col">Date</th>
+					<th scope="col">Month</th>
 					<th scope="col">Actions</th>
 				</tr>
 				<tbody>
@@ -52,7 +89,7 @@
 							<form method="POST" action="/dues/{{$unpayeddue->id}}">
 								@method('PUT')
 								@csrf
-								<input class="btn btn-danger btn-sm" type="submit" value="Pay Due"/>
+								<input class="btn btn-primary" type="submit" value="Pay Due"/>
 							</form>
 						</th>
 					</tr>

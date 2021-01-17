@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Due;
 use App\Models\Apartment;
+use App\Models\Monthlyincome;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Auth;
@@ -26,6 +27,8 @@ class DueController extends Controller
         $user = Auth::user();
         $unpayeddues = Due::where('status', false)->get();
         $payeddues = Due::where('status', true)->get();
+        $apartments = Apartment::get();
+        $monthlyincomes = Monthlyincome::get();
 
         $totalUnpayeddue = 0;
         foreach ($unpayeddues as $unpayeddue) {
@@ -43,6 +46,8 @@ class DueController extends Controller
             'unpayeddues' => $unpayeddues,
             'totalUnpayeddue' => $totalUnpayeddue,
             'totalPayeddue' => $totalPayeddue,
+            'apartments' => $apartments,
+            'monthlyincomes' => $monthlyincomes
             ]);
         }else{
             return redirect()->route('home')->with('alert', 'You are not an admin');
