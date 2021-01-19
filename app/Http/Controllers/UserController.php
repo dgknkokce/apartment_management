@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use App\Models\Role;
+use App\Models\Apartment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -21,12 +23,12 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::get();
-        $user = Auth::user();
-        if ($user->role_id === 1) {
+        $users = User::where('role_id', 2)->get();
+        $authuser = Auth::user();
+        if ($authuser->role_id === 1) {
             return view('admin', [
-            'user' => $user,
-            'users' => $users
+            'users' => $users,
+            'authuser' => $authuser
             ]);
         }else{
             return redirect()->route('home')->with('error', 'You are not an admin');
@@ -41,8 +43,8 @@ class UserController extends Controller
     public function create()
     {
         $apartment = Auth::user()->apartment;
-        $user = Auth::user();
-        if ($user->role_id === 1){
+        $authuser = Auth::user();
+        if ($authuser->role_id === 1){
             return view('users.create', [
             'apartment' => $apartment
             ]);
@@ -94,24 +96,42 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\User  $user
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit($id)
     {
-        //
+        $apartments = Apartment::get();
+        $roles = Role::get();
+        $user = User::find($id);
+        return view('users.edit', [
+            'user' => $user,
+            'apartments' => $apartments,
+            'roles' => $roles
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\User  $user
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, $id)
     {
-        //
+        $user = User::find($id);
+
+        $user->apartment_id = request('apartment');
+        $user->fullname = request('name');
+        $user->tel_no = request('tel_no');
+        $user->email = request('email');
+        $user->flat_no = request('flat_no');
+        $user->payment_type = request('payment_type');
+        $user->role_id = request('role_id');
+        $user->save();
+
+        return redirect()->route('admin')->with('success', 'User Updateed Succesfully');
     }
 
     /**

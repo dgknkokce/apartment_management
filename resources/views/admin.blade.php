@@ -6,25 +6,17 @@
 	<div class="card">
 		<div class="card-header"><h2>Dear Admin</h2></div>
 		<div class="card-body">
-            <p>This is your admin panel. You can and do other users can't. So may the force be with you. :)</p>
+            <button type="button" class="btn btn-primary" onclick="location.href='{{ url('dues') }}'">Manage Dues
+            </button>
+
+            @if ($authuser->role_id === 1)
+            <button type="button" class="btn btn-primary" onclick="location.href='{{ url('/users/create') }}'">Add User
+            </button>
+            @endif
         </div>
 	</div>
 	<div class="card">
-		<div class="card-header"><h2>Manage Unpayed Dues</h2></div>
-		<div class="card-body">
-			<button type="button" class="btn btn-dark btn-block" onclick="location.href='{{ url('dues') }}'">Manage Unpayed Dues
-            </button>
-		</div>
-
-		<div class="card-header"><h2>Add New User</h2></div>
-		<div class="card-body">
-			@if ($user->role_id === 1)
-            <button type="button" class="btn btn-dark btn-block" onclick="location.href='{{ url('/users/create') }}'">Add User
-            </button>
-            @endif
-		</div>
-
-		<div class="card-header"><h2>All Users(including YOU)</h2></div>
+		<div class="card-header"><h2>All Users</h2></div>
 		@foreach($users as $user)
 		<div class="card-body">
 			<table class="table">
@@ -47,6 +39,10 @@
 							<form method="POST" action="/users/{{$user->id}}">
 								<input class="btn btn-danger btn-sm" type="submit" value="Move Out"/>
 								@method('DELETE')
+								@csrf
+							</form>
+							<form method="GET" action="/users/{{$user->id}}/edit">
+								<input class="btn btn-primary" type="submit" value="Edit"/>
 								@csrf
 							</form>
 						</th>

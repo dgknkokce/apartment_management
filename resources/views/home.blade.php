@@ -16,14 +16,6 @@
                     {{ __('You are logged in!') }}, {{Auth::user()->fullname}}
                 </div>
 
-                @if ($user->role_id === 1)
-                    <div class="card-header"><h2>Only For Admins</h2></div>
-                    <div class="card-body">
-                        <button type="button" class="btn btn-dark btn-block" onclick="location.href='{{ url('admin') }}'">Admin Panel
-                        </button>
-                    </div>
-                @endif
-
                 <div class="card-header"><h2>Your Information</h2></div>
                 <div class="card-body">
                     Fullname: {{$user->fullname}}<br>
