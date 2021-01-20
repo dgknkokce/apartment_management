@@ -10,6 +10,6 @@ class Announcement extends Model
     use HasFactory;
     public function apartment()
     {
-    	return $this->hasOne('App\Models\Apartment');
+    	return $this->hasMany('App\Models\Apartment');
     }
 }

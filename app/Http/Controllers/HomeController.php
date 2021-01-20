@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Auth;
 use Illuminate\Http\Request;
 use App\Models\Due;
+use App\Models\Announcement;
 use App\Models\Monthlyincome;
 
 
@@ -29,8 +30,10 @@ class HomeController extends Controller
     {
 
         $user = Auth::user();
+        $announcements = Announcement::where('status', true)->get();
         $unpayeddues = Due::where('status', false)->get();
         $payeddues = Due::where('status', true)->get();
+
 
 
         //adding dues to spesific apartment's spesific monthlyincome
@@ -49,7 +52,8 @@ class HomeController extends Controller
         return view('home', [
             'user' => $user,
             'unpayeddues' => $unpayeddues,
-            'monthlyincomes' => $monthlyincomes
+            'monthlyincomes' => $monthlyincomes,
+            'announcements' => $announcements
         ]);
         //return view('home');
     }
