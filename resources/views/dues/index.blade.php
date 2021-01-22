@@ -2,6 +2,7 @@
 
 @section('content')
 
+
 <script src="https://www.gstatic.com/charts/loader.js"></script>
 <script>
     google.charts.load('current', {packages: ['corechart']});
@@ -28,7 +29,12 @@
 <div class="container">
 	<div class="card">
 
-		<div class="card-header"><h2>Unpayed Dues</h2></div>
+		<div class="card-header"><h2>Unpayed Dues</h2>
+			@if ($user->role_id === 1)
+            <button type="button" class="btn btn-primary" onclick="location.href='{{ url('/dues/create') }}'">Add Unpayed Due
+            </button>
+            @endif
+		</div>
 		<div class="card-body">
 			<div class="row justify-content-center">
 		        <div id='myPieChart'></div>

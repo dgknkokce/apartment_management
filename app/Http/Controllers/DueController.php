@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Due;
 use App\Models\Apartment;
 use App\Models\Monthlyincome;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Auth;
@@ -61,7 +62,18 @@ class DueController extends Controller
      */
     public function create()
     {
-        //
+        $authuser = Auth::user();
+        $monthlyincomes = Monthlyincome::get();
+        $apartments = Apartment::get();
+        if ($authuser->role_id === 1) {
+            return view('dues.create', [
+            'monthlyexpenses' => $monthlyincomes,
+            'authuser' => $authuser,
+            'apartments' => $apartments
+            ]);
+        }else{
+            return redirect()->route('home')->with('error', 'You are not an admin');
+        }
     }
 
     /**
@@ -72,7 +84,25 @@ class DueController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate(request(), [
+            'monthlyincome' => 'required',
+            'apartment' => 'required',
+            'amount' => 'required'
+        ]);
+
+        $users = User::where('apartment_id', request('apartment'))->get();
+
+        foreach ($users as $user) {
+
+            $due = new Due();
+            $due->user_id = $user->id;
+            $due->monthlyincome_id = request('monthlyincome');
+            $due->amount = request('amount');
+            $due->status = false;
+
+            $due->save();
+        }
+        return redirect()->route('dues.index')->with('success', 'New Unpayed Due Added');
     }
 
     /**
