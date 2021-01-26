@@ -53,6 +53,7 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'flat_no' => ['required', 'numeric', 'numeric', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
@@ -65,8 +66,6 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $apartments = Apartment::get();
-
         return User::create([
             'fullname' => $data['name'],
             'email' => $data['email'],
@@ -76,7 +75,6 @@ class RegisterController extends Controller
             'apartment_id' => $data['apartment'],
             'payment_type' => $data['payment_type'],
             'role_id' => 2,
-
         ]);
     }
 }

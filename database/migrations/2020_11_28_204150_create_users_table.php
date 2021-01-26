@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->bigInteger('flat_no');
             $table->string('payment_type');
+            $table->unique(["apartment_id","flat_no"],'flat_check_unique');
             $table->timestamps();
         });
         Artisan::call('db:seed', [
