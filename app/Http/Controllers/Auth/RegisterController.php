@@ -53,7 +53,6 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'flat_no' => ['required', 'numeric', 'numeric', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
@@ -66,7 +65,13 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::where('apartment_id', $data['apartment'])->where('flat_no',$data['flat_no'])->get();
+        $userCount = $user->count();
+        if ($userCount > 0) {
+            dd($user);
+            return redirect()->route('home')->with('alert', 'There is someone in that flat');
+        }else{
+            User::create([
             'fullname' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
@@ -75,6 +80,7 @@ class RegisterController extends Controller
             'apartment_id' => $data['apartment'],
             'payment_type' => $data['payment_type'],
             'role_id' => 2,
-        ]);
+            ]);
+        }
     }
 }

@@ -153,4 +153,48 @@ class DueController extends Controller
     {
         //
     }
+
+
+    /**
+     * show wanted records
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    /*public function showRecords(Request $request)
+    {
+
+
+        $user = Auth::user();
+        $wantedUnpayeddues = Due::where('status', false)->where('monthlyincome_id', request('month'))->where(Due::()->monthlyincome->apartment,request('apartment'))->get();
+
+        $wantedPayeddues = Due::where('status', true)->where('monthlyincome_id', request('month'))->where(Due::()->monthlyincome->apartment,request('apartment'))->get();
+
+        $apartments = Apartment::get();
+        $monthlyincomes = Monthlyincome::get();
+
+        $wantedTotalUnpayeddue = 0;
+        foreach ($wantedUnpayeddues as $wantedUnpayeddue) {
+            $wantedTotalUnpayeddue += $wantedUnpayeddue->amount;
+        }
+        $wantedTotalPayeddue = 0;
+        foreach ($wantedPayeddues as $wantedPayeddue) {
+            $wantedTotalPayeddue += $wantedPayeddue->amount;
+        }
+
+
+        if ($user->role_id === 1) {
+            return view('showRecords', [
+            'user' => $user,
+            'wantedUnpayeddues' => $wantedUnpayeddues,
+            'wantedTotalUnpayeddue' => $wantedTotalUnpayeddue,
+            'wantedTotalPayeddue' => $wantedTotalPayeddue,
+            'apartments' => $apartments,
+            'monthlyincomes' => $monthlyincomes
+            ]);
+        }else{
+            return redirect()->route('home')->with('alert', 'You are not an admin');
+        }
+
+    }*/
 }

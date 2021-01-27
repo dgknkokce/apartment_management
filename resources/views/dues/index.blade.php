@@ -40,20 +40,20 @@
 		        <div id='myPieChart'></div>
 		    </div>
 
-			<div class="row justify-content-center">
-		      <form class="form-inline py-3" method="GET" action="">
+			<form method="GET" action="/records">
+				@csrf
 
-		        <div class="form-group mx-5">
+		        <div class="field">
 		          	<label for="apartment">Apartment: </label>
-		          	<select name="apartment_id" id="apartment">
+		          	<select name="apartment" id="apartment">
 		          		@foreach($apartments as $apartment)
 					    <option value="{{ $apartment->id }}">{{ $apartment->id }}</option>
 					    @endforeach
 				  	</select>
 		        </div>
 
-		        <div class="form-group mx-5">
-		          	<label for="apartment">Month: </label>
+		        <div class="field">
+		          	<label for="month">Month: </label>
 		          	<select name="month" id="month">
 		          		@foreach($monthlyincomes as $monthlyincome)
 					    <option value="{{ $monthlyincome->date }}">{{ $monthlyincome->date }}</option>
@@ -63,12 +63,12 @@
 
 
 
-		        <div class="form-group mx-5">
-		          <input class="btn btn-primary" type="submit" value=Show>
+		        <div class="field is-grouped">
+			        <div class="control">
+						<button class="btn btn-primary" type="submit">SHOW</button>
+					</div>
 		        </div>
-
-		      </form>
-		  	</div>
+		  	</form>
 			<div id="myPieChart"/>
 		</div>
 
@@ -105,5 +105,6 @@
 		</div>
 	</div>
 </div>
+
 
 @endsection
