@@ -39,37 +39,11 @@
 			<div class="row justify-content-center">
 		        <div id='myPieChart'></div>
 		    </div>
-
-			<form method="GET" action="/records">
-				@csrf
-
-		        <div class="field">
-		          	<label for="apartment">Apartment: </label>
-		          	<select name="apartment" id="apartment">
-		          		@foreach($apartments as $apartment)
-					    <option value="{{ $apartment->id }}">{{ $apartment->id }}</option>
-					    @endforeach
-				  	</select>
-		        </div>
-
-		        <div class="field">
-		          	<label for="month">Month: </label>
-		          	<select name="month" id="month">
-		          		@foreach($monthlyincomes as $monthlyincome)
-					    <option value="{{ $monthlyincome->date }}">{{ $monthlyincome->date }}</option>
-					    @endforeach
-				  	</select>
-		        </div>
-
-
-
-		        <div class="field is-grouped">
-			        <div class="control">
-						<button class="btn btn-primary" type="submit">SHOW</button>
-					</div>
-		        </div>
-		  	</form>
 			<div id="myPieChart"/>
+			@if ($user->role_id === 1)
+			<button type="button" class="btn btn-primary" onclick="location.href='{{ url('/apartments') }}'">Show Details
+            </button>
+            @endif
 		</div>
 
 
@@ -77,7 +51,7 @@
 		<div class="card-header"><h2>Unpayed Dues</h2></div>
 		<div class="card-body" >
 			@foreach($unpayeddues as $unpayeddue)
-			<table class="table">
+			<table class="table" id="table">
 				<tr>
 					<th scope="col">Full Name</th>
 					<th scope="col">Apartment</th>
@@ -95,7 +69,7 @@
 							<form method="POST" action="/dues/{{$unpayeddue->id}}">
 								@method('PUT')
 								@csrf
-								<input class="btn btn-primary" type="submit" value="Pay Due"/>
+								<input class="btn btn-primary" id="Paybutton" type="submit" value="Pay Due"/>
 							</form>
 						</th>
 					</tr>

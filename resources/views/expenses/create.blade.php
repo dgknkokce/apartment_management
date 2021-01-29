@@ -37,8 +37,8 @@
 				<label class="label" for="monthlyexpense">Month</label>
 
 				<select id="monthlyexpense" type="select" class="form-control @error('monthlyexpense') is-invalid @enderror" name="monthlyexpense">
-					@foreach($user->apartment->monthlyexpenses as $monthlyexpense)
-					<option name="{{$monthlyexpense->id}}" id="{{$monthlyexpense->id}}">{{ $monthlyexpense->date }}</option>
+					@foreach($monthlyexpenses as $monthlyexpense)
+					<option value="{{ $monthlyexpense->id }}">{{ $monthlyexpense->date }}</option>
 					@endforeach
                 </select>
                 @error('monthlyexpense')

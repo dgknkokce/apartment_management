@@ -65,6 +65,7 @@ class RegisterController extends Controller
             $user->flat_no = request('flat_no');
             $user->payment_type = request('payment_type');
             $user->role_id = 2;
+            $user->is_deleted = false;
             $user->save();
             return redirect()->route('registers.create')->with('success', 'Your register was successful');
         }

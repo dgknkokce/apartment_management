@@ -43,7 +43,7 @@
 
 				<select id="monthlyincome" type="select" class="form-control @error('monthlyincome') is-invalid @enderror" name="monthlyincome">
 					@foreach($authuser->apartment->monthlyincomes as $monthlyincome)
-					<option name="{{$monthlyincome->id}}" id="{{$monthlyincome->id}}">{{ $monthlyincome->date }}</option>
+					<option value="{{ $monthlyincome->id }}">{{ $monthlyincome->date }}</option>
 					@endforeach
                 </select>
                 @error('monthlyincome')

@@ -26,6 +26,7 @@ class UserSeeder extends Seeder
         	'password' => Hash::make(123456789),
         	'flat_no' => 24,
         	'payment_type' => 'owner',
+            'is_deleted' => false,
         	'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
 			'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
@@ -37,8 +38,9 @@ class UserSeeder extends Seeder
             'tel_no' => 123456789,
             'email' => 'dododdd@hotmail.com',
             'password' => Hash::make(123456789),
-            'flat_no' => 2,
+            'flat_no' => 24,
             'payment_type' => 'rent',
+            'is_deleted' => false,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);

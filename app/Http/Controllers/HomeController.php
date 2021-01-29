@@ -34,19 +34,32 @@ class HomeController extends Controller
         $unpayeddues = Due::where('status', false)->get();
         $payeddues = Due::where('status', true)->get();
 
+        $monthlyincomes = $user->apartment->monthlyincomes;
+        //dd($monthlyincomes);
+
 
 
         //adding dues to spesific apartment's spesific monthlyincome
-        foreach ($payeddues as $payeddue) {
-            if ($payeddue->user->apartment->id === $user->apartment->id) {
-                foreach ($user->apartment->monthlyincomes as $monthlyincome) {
-                    if ($payeddue->monthlyincome_id === $monthlyincome->id) {
-                        $monthlyincome->totalincome += $payeddue->amount;
-                    }
+
+        foreach ($monthlyincomes as $monthlyincome) {
+            foreach ($payeddues as $payeddue) {
+                //dd($payeddue);
+                if ($payeddue->monthlyincome->id === $monthlyincome->id) {
+                    $monthlyincome->totalincome += $payeddue->amount;
+                    //dd($monthlyincome->totalincome);
                 }
             }
         }
-        $monthlyincomes = $user->apartment->monthlyincomes;
+
+        /*foreach ($payeddues as $payeddue) {
+            foreach ($monthlyincomes as $monthlyincome) {
+                //dd($monthlyincome);
+                if ($payeddue->monthlyincome->id === $monthlyincome->id) {
+                    $monthlyincome->totalincome += $payeddue->amount;
+                    dd($monthlyincome->totalincome);
+                }
+            }
+        }*/
 
 
         return view('home', [

@@ -32,7 +32,7 @@ class ExpenseController extends Controller
     public function create()
     {
         $user = Auth::user();
-        $monthlyexpenses = Auth::user()->apartment->monthlyexpenses();
+        $monthlyexpenses = Monthlyexpense::where('apartment_id', $user->apartment_id)->get();
         if ($user->role_id === 1) {
             return view('expenses.create', [
             'monthlyexpenses' => $monthlyexpenses,
@@ -56,6 +56,7 @@ class ExpenseController extends Controller
             'name' => 'required',
             'amount' => 'required'
         ]);
+
 
         $expense = new Expense();
         $expense->monthlyexpense_id = request('monthlyexpense');

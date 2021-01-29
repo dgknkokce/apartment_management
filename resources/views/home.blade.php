@@ -29,18 +29,18 @@
                             @if($announcement->apartment_id === $user->apartment_id)
                             <table class="table">
                                     <tr>
-                                        <th scope="col">Subject</th>
-                                        <th scope="col">Date</th>
+                                        <th scope="col" style="text-align: center;">Subject</th>
+                                        <th scope="col" style="text-align: center;">Date</th>
                                         @if($user->role_id === 1)
-                                        <th scope="col">Actions</th>
+                                        <th scope="col" style="text-align: center;">Actions</th>
                                         @endif
                                     </tr>
                                 <tbody>
                                     <tr>
-                                        <th>{{ $announcement->subject }}</th>
-                                        <th>{{ $announcement->created_at }}</th>
+                                        <th style="text-align: center;">{{ $announcement->subject }}</th>
+                                        <th style="text-align: center;">{{ $announcement->created_at }}</th>
                                         @if($user->role_id === 1)
-                                        <th>
+                                        <th style="text-align: center;">
                                             <form method="POST" action="/announcements/{{$announcement->id}}">
                                                 @method('PUT')
                                                 @csrf
@@ -63,21 +63,21 @@
 
                         <table class="table">
                                 <tr>
-                                    <th scope="col">Fullname</th>
-                                    <th scope="col">Telephone Number</th>
-                                    <th scope="col">Email</th>
-                                    <th scope="col">Apartment</th>
-                                    <th scope="col">Flat Number</th>
-                                    <th scope="col">Payment Type</th>
+                                    <th scope="col" style="text-align: center;">Fullname</th>
+                                    <th scope="col" style="text-align: center;">Telephone Number</th>
+                                    <th scope="col" style="text-align: center;">Email</th>
+                                    <th scope="col" style="text-align: center;">Apartment</th>
+                                    <th scope="col" style="text-align: center;">Flat Number</th>
+                                    <th scope="col" style="text-align: center;">Payment Type</th>
                                 </tr>
                             <tbody>
                                 <tr>
-                                    <th>{{$user->fullname}}</th>
-                                    <th>{{$user->tel_no}}</th>
-                                    <th>{{$user->email}}</th>
-                                    <th>{{$user->apartment_id}}</th>
-                                    <th>{{$user->flat_no}}</th>
-                                    <th>{{$user->payment_type}}</th>
+                                    <th style="text-align: center;">{{$user->fullname}}</th>
+                                    <th style="text-align: center;">{{$user->tel_no}}</th>
+                                    <th style="text-align: center;">{{$user->email}}</th>
+                                    <th style="text-align: center;">{{$user->apartment_id}}</th>
+                                    <th style="text-align: center;">{{$user->flat_no}}</th>
+                                    <th style="text-align: center;">{{$user->payment_type}}</th>
                                 </tr>
                             </tbody>
                         </table>
@@ -91,13 +91,13 @@
                         @if($unpayeddue->user_id === $user->id)
                         <table class="table">
                             <tr>
-                                <th scope="col">Amount</th>
-                                <th scope="col">Month</th>
+                                <th scope="col" style="text-align: center;">Amount</th>
+                                <th scope="col" style="text-align: center;">Month</th>
                             </tr>
                             <tbody>
                                 <tr>
-                                    <th>{{ $unpayeddue->amount }}</th>
-                                    <th>{{ $unpayeddue->monthlyincome->date }}</th>
+                                    <th style="text-align: center;">{{ $unpayeddue->amount }}</th>
+                                    <th style="text-align: center;">{{ $unpayeddue->monthlyincome->date }}</th>
                                 </tr>
                             </tbody>
                         </table>
@@ -138,7 +138,7 @@
                         <div class="collapse" id="collapseExample{{ $monthlyexpense->date }}">
                           <div class="card card-body">
                             @foreach($monthlyexpense->expenses as $expense)
-                            Subject:{{ $expense->name }}, Amount:{{ $expense->amount }}<br>
+                            Subject:{{ $expense->name }}, &nbsp; Amount:{{ $expense->amount }}<br>
                             @endforeach
                           </div>
                         </div>
