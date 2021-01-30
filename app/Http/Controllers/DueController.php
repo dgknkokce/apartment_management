@@ -90,13 +90,15 @@ class DueController extends Controller
             'amount' => 'required'
         ]);
 
+        $monthlyincome = Monthlyincome::where('apartment_id', request('apartment'))->where('date', request('monthlyincome'))->first();
+
         $users = User::where('apartment_id', request('apartment'))->where('is_deleted', false)->get();
 
         foreach ($users as $user) {
 
             $due = new Due();
             $due->user_id = $user->id;
-            $due->monthlyincome_id = request('monthlyincome');
+            $due->monthlyincome_id = $monthlyincome->id;
             $due->amount = request('amount');
             $due->status = false;
 

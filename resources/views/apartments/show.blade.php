@@ -1,38 +1,28 @@
 @extends('layouts.app')
 @section('content')
 <div class="container">
-	<div class="card">
-		<div class="card-header"><h2>Select Month</h2>
 
-		<form method="GET" action="/apartments/{{ $apartment->id }}">
-			@csrf
+<form method="PUT" action="/apartments/showDues">
+	@method('POST')
+	@csrf
+  	<div class="form-group">
+	    <label for="selectMonth">Select Month</label>
+	    <select class="form-control" id="selectMonth" name="month">
+	    	@foreach($monthlyincomes as $monthlyincome)
+	      		<option id="month" value="{{ $monthlyincome->id }}">{{ $monthlyincome->date }}</option>
+	      	@endforeach
+	    </select>
+  	</div>
+  	<div class="form-group">
+	    <label for="selectstatus">Select Status</label>
+	    <select class="form-control" id="status" name="status">
+	      	<option id="status" value="1">Payed</option>
+	      	<option id="status" value="0">Unpayed</option>
+	    </select>
+  	</div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
 
-			<div class="field">
-				<label class="label" for="apartment">Apartments</label>
-
-				<select id="apartment" type="select" class="form-control @error('apartment') is-invalid @enderror" name="apartment">
-					@foreach($apartments as $apartment)
-					<option value="{{ $apartment->id }}">{{ $apartment->id }}</option>
-					@endforeach
-                </select>
-                @error('apartment')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                @enderror
-			</div>
-
-			<div class="field is-grouped">
-				<div class="control">
-					<button class="btn btn-primary" type="submit">Submit</button>
-				</div>
-			</div>
-
-
-		</form>
-
-		</div>
-	</div>
 </div>
 
 

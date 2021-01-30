@@ -23,6 +23,7 @@ Route::get('/guide', function()
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/admin', [App\Http\Controllers\UserController::class, 'index'])->name('admin');
+Route::get('/apartments/showDues', [App\Http\Controllers\ApartmentController::class, 'showDues'])->name('showDues');
 Route::resource('/expenses', 'App\Http\Controllers\ExpenseController');
 Route::resource('/users', 'App\Http\Controllers\UserController');
 Route::resource('/dues', 'App\Http\Controllers\DueController');

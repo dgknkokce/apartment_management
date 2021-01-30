@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Auth;
 use App\Models\Apartment;
+use App\Models\Due;
 use Illuminate\Http\Request;
 
 class ApartmentController extends Controller
@@ -62,9 +63,7 @@ class ApartmentController extends Controller
     public function show($id)
     {
         $apartment = Apartment::find($id);
-        dd($apartment);
         $monthlyincomes = $apartment->monthlyincomes()->get();
-        dd($monthlyincomes);
         $authuser = Auth::user();
         if ($authuser->role_id === 1) {
             return view('apartments.show', [
@@ -110,5 +109,30 @@ class ApartmentController extends Controller
     public function destroy(Apartment $apartment)
     {
         //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Apartment  $apartment
+     * @return \Illuminate\Http\Response
+     */
+    public function showDues(Request $request)
+    {
+        $this->validate(request(), [
+            'month' => 'required',
+            'status' => 'required'
+        ]);
+        $authuser = Auth::user();
+        $wanteddues = Due::where('status', request('status'))->where('monthlyincome_id', request('month'))->get();
+
+        if ($authuser->role_id === 1) {
+            return view('apartments.showdue', [
+            'wanteddues' => $wanteddues
+            ]);
+        }else{
+            return redirect()->route('home')->with('error', 'You are not an admin');
+        }
     }
 }

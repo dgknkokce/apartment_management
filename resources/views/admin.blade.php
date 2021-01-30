@@ -34,7 +34,7 @@
 						<th style="text-align: center;">{{ $user->email }}</th>
 						<th style="text-align: center;">{{ $user->apartment_id }}</th>
 						<th style="text-align: center;">{{ $user->flat_no }}</th>
-						<th style="text-align: center;">{{ $user->created_at }}</th>
+						<th style="text-align: center;">{{ $user->created_at->format('m/Y') }}</th>
 						<th>
 							<form method="POST" action="/users/{{$user->id}}">
 								<input class="btn btn-danger btn-sm" type="submit" value="Move Out"/>
