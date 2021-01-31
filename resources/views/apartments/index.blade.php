@@ -10,7 +10,7 @@
 				<tr>
 					<th scope="col" style="text-align: center;">No</th>
 					<th scope="col" style="text-align: center;">Total Flat</th>
-					<th scope="col" style="text-align: center;">Total Flat</th>
+					<th scope="col" style="text-align: center;">Total Floor</th>
 					<th scope="col" style="text-align: center;">Actions</th>
 				</tr>
 				<tbody>

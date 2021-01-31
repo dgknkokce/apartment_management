@@ -24,8 +24,8 @@ class ApartmentSeeder extends Seeder
         ]);
         DB::table('apartments')->insert([
             'id' => 2,
-            'floor_total' => 12,
-            'flat_total' => 24,
+            'floor_total' => 24,
+            'flat_total' => 48,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);

@@ -3,7 +3,7 @@
 <div class="container">
 	<img class="mySlides" src="{{url('/images/apartment_1.jpg')}}" style="width: 100%; height: 600px;">
 	<div class="card">
-		<div class="card-header">
+		<div class="card-header"><h1>For Admins</h1>
 			<p>
 				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 				tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
@@ -17,7 +17,7 @@
 </div>
 <div class="container">
 	<div class="card">
-		<div class="card-header">
+		<div class="card-header"><h1>For Users</h1>
 			<p>
 				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 				tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,

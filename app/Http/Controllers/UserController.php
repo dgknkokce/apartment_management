@@ -146,8 +146,28 @@ class UserController extends Controller
         $authuser = Auth::user();
         $user = User::find($id);
 
+        $selectedUserforIdCheck = User::where('apartment_id', $authuser->apartment_id)->where('flat_no',request('flat_no'))->first();
+
+        if ($selectedUserforIdCheck !== null) {
+            if ($user->id === $selectedUserforIdCheck->id) {
+                $user->apartment_id = $authuser->apartment_id;
+                $user->fullname = request('name');
+                $user->tel_no = request('tel_no');
+                $user->email = request('email');
+                $user->flat_no = request('flat_no');
+                $user->payment_type = request('payment_type');
+                $user->role_id = request('role_id');
+                $user->is_deleted = false;
+                $user->save();
+
+                return redirect()->route('admin')->with('success', 'User Updateed Succesfully');
+            }
+        }
+
+
         $selectedUser = User::where('apartment_id', $authuser->apartment_id)->where('flat_no',request('flat_no'))->get();
         $userCount = $selectedUser->count();
+
         if ($userCount > 0) {
             return redirect()->route('admin')->with('error', 'There is someone in that flat');
         }else{
