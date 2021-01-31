@@ -102,7 +102,7 @@
                 <li class="list-inline-item"><a href="#">Terms</a></li>
                 <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
             </ul>
-            <p class="copyright">Company Name © 2018</p>
+            <p class="copyright">DodoCompany © 2021</p>
         </footer>
     </div>
     <style type="text/css">

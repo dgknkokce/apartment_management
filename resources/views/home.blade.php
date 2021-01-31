@@ -38,7 +38,7 @@
                                 <tbody>
                                     <tr>
                                         <th style="text-align: center;">{{ $announcement->subject }}</th>
-                                        <th style="text-align: center;">{{ $announcement->created_at }}</th>
+                                        <th style="text-align: center;">{{ $announcement->created_at->format('d/m/Y') }}</th>
                                         @if($user->role_id === 1)
                                         <th style="text-align: center;">
                                             <form method="POST" action="/announcements/{{$announcement->id}}">

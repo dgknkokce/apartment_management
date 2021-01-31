@@ -8,7 +8,7 @@
 			@csrf
 
 			<div class="field">
-				<label class="label" for="name">Name</label>
+				<label class="label" for="name">Subject</label>
 
 				<div class="control">
 					<input class="form-control @error('name') is-invalid @enderror" type="text" name="name" id="name">
@@ -50,7 +50,7 @@
 
 			<div class="field is-grouped">
 				<div class="control">
-					<button class="btn btn-primary" type="submit">Submit</button>
+					<button class="btn btn-primary" type="submit">Add Expense</button>
 				</div>
 			</div>
 

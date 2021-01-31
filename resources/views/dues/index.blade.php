@@ -53,19 +53,19 @@
 			@foreach($unpayeddues as $unpayeddue)
 			<table class="table" id="table">
 				<tr>
-					<th scope="col">Full Name</th>
-					<th scope="col">Apartment</th>
-					<th scope="col">Amount</th>
-					<th scope="col">Month</th>
-					<th scope="col">Actions</th>
+					<th scope="col" style="text-align: center;">Full Name</th>
+					<th scope="col" style="text-align: center;">Apartment</th>
+					<th scope="col" style="text-align: center;">Amount</th>
+					<th scope="col" style="text-align: center;">Month</th>
+					<th scope="col" style="text-align: center;">Actions</th>
 				</tr>
 				<tbody>
 					<tr>
-						<th>{{ $unpayeddue->user->fullname }}</th>
-						<th>{{ $unpayeddue->user->apartment_id }}</th>
-						<th>{{ $unpayeddue->amount }}</th>
-						<th>{{ $unpayeddue->monthlyincome->date }}</th>
-						<th>
+						<th style="text-align: center;">{{ $unpayeddue->user->fullname }}</th>
+						<th style="text-align: center;">{{ $unpayeddue->user->apartment_id }}</th>
+						<th style="text-align: center;">{{ $unpayeddue->amount }}</th>
+						<th style="text-align: center;">{{ $unpayeddue->monthlyincome->date }}</th>
+						<th style="text-align: center;">
 							<form method="POST" action="/dues/{{$unpayeddue->id}}">
 								@method('PUT')
 								@csrf

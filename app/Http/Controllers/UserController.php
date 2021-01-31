@@ -48,10 +48,16 @@ class UserController extends Controller
     public function create()
     {
         $apartment = Auth::user()->apartment;
+        $flat_numbers = array();
+        for($number = 1; $number <= $apartment->flat_total; $number++) {
+           array_push($flat_numbers, $number);
+        }
+
         $authuser = Auth::user();
         if ($authuser->role_id === 1){
             return view('users.create', [
-            'apartment' => $apartment
+            'apartment' => $apartment,
+            'flat_numbers' => $flat_numbers
             ]);
             return view('users.create');
         }else{
@@ -67,19 +73,20 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        $authuser = Auth::user();
         $this->validate(request(), [
             'name' => 'required',
             'email' => 'required|email',
             'password' => 'required'
         ]);
 
-        $selectedUser = User::where('apartment_id', request('apartment'))->where('flat_no',request('flat_no'))->get();
+        $selectedUser = User::where('apartment_id', $authuser->apartment_id)->where('flat_no',request('flat_no'))->get();
         $userCount = $selectedUser->count();
         if ($userCount > 0) {
             return redirect()->route('users.create')->with('error', 'There is someone in that flat');
         }else{
             $user = new User();
-            $user->apartment_id = request('apartment');
+            $user->apartment_id = $authuser->apartment_id;
             $user->fullname = request('name');
             $user->tel_no = request('tel_no');
             $user->email = request('email');
@@ -111,13 +118,19 @@ class UserController extends Controller
      */
     public function edit($id)
     {
+        $apartment = Auth::user()->apartment;
+        $flat_numbers = array();
+        for($number = 1; $number <= $apartment->flat_total; $number++) {
+           array_push($flat_numbers, $number);
+        }
         $apartments = Apartment::get();
         $roles = Role::get();
         $user = User::find($id);
         return view('users.edit', [
             'user' => $user,
             'apartments' => $apartments,
-            'roles' => $roles
+            'roles' => $roles,
+            'flat_numbers' => $flat_numbers
         ]);
     }
 
@@ -130,19 +143,26 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $authuser = Auth::user();
         $user = User::find($id);
 
-        $user->apartment_id = request('apartment');
-        $user->fullname = request('name');
-        $user->tel_no = request('tel_no');
-        $user->email = request('email');
-        $user->flat_no = request('flat_no');
-        $user->payment_type = request('payment_type');
-        $user->role_id = request('role_id');
-        $user->is_deleted = false;
-        $user->save();
+        $selectedUser = User::where('apartment_id', $authuser->apartment_id)->where('flat_no',request('flat_no'))->get();
+        $userCount = $selectedUser->count();
+        if ($userCount > 0) {
+            return redirect()->route('admin')->with('error', 'There is someone in that flat');
+        }else{
+            $user->apartment_id = $authuser->apartment_id;
+            $user->fullname = request('name');
+            $user->tel_no = request('tel_no');
+            $user->email = request('email');
+            $user->flat_no = request('flat_no');
+            $user->payment_type = request('payment_type');
+            $user->role_id = request('role_id');
+            $user->is_deleted = false;
+            $user->save();
 
-        return redirect()->route('admin')->with('success', 'User Updateed Succesfully');
+            return redirect()->route('admin')->with('success', 'User Updateed Succesfully');
+        }
     }
 
     /**

@@ -58,7 +58,12 @@
                             <label for="flat_no" class="col-md-4 col-form-label text-md-right">{{ __('Flat Number') }}</label>
 
                             <div class="col-md-6">
-                                <input id="flat_no" type="number" class="form-control @error('flat_no') is-invalid @enderror" name="flat_no" value="{{ $user->flat_no }}" min="1" max="24">
+
+                                <select id="flat_no" type="select" class="form-control @error('flat_no') is-invalid @enderror" name="flat_no" value="{{ old('flat_no') }}">
+                                    @foreach($flat_numbers as $flat_number)
+                                    <option value="{{$flat_number}}" id="{{$flat_number}}">{{$flat_number}}</option>
+                                    @endforeach
+                                </select>
 
                                 @error('flat_no')
                                     <span class="invalid-feedback" role="alert">
@@ -68,24 +73,6 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
-                            <label for="apartment" class="col-md-4 col-form-label text-md-right">{{ __('Apartment') }}</label>
-
-                            <div class="col-md-6">
-
-                                <select id="apartment" type="select" class="form-control @error('apartment') is-invalid @enderror" name="apartment" value="{{ $user->apartment_id }}">
-                                    @foreach($apartments as $apartment)
-                                    <option value="{{$apartment->id}}" id="{{$apartment->id}}">{{$apartment->id}}</option>
-                                    @endforeach
-                                </select>
-
-                                @error('apartment')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
 
                         <div class="form-group row">
                             <label for="payment_type" class="col-md-4 col-form-label text-md-right">{{ __('Payment Type') }}</label>

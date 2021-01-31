@@ -6,11 +6,11 @@
 	<div class="card">
 		<div class="card-header"><h2>Dear Admin</h2></div>
 		<div class="card-body">
-            <button type="button" class="btn btn-primary" onclick="location.href='{{ url('dues') }}'">Manage Dues
+            <button type="button" class="btn btn-primary" onclick="location.href='{{ url('dues') }}'">Manage All Dues
             </button>
 
             @if ($authuser->role_id === 1)
-            <button type="button" class="btn btn-primary" onclick="location.href='{{ url('/users/create') }}'">Add User
+            <button type="button" class="btn btn-primary" onclick="location.href='{{ url('/users/create') }}'">Add User To Your Apartment
             </button>
             @endif
         </div>
@@ -76,7 +76,7 @@
 						@if($unpayeddue->user_id === $olduser->id)
 							<th class="text-muted" style="text-align: center;">
 								Amount: &nbsp;{{ $unpayeddue->amount }}<br>
-								Date: &nbsp;{{ $unpayeddue->monthlyincome->created_at->format('m/Y') }}
+								Date: &nbsp;{{$unpayeddue->monthlyincome->date}} / {{ $unpayeddue->monthlyincome->created_at->format('Y') }}
 							</th>
 						@endif
 						@endforeach

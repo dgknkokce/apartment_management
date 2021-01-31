@@ -29,7 +29,7 @@
 				<label class="label" for="amount">Amount</label>
 
 				<div class="control">
-					<input class="form-control @error('amount') is-invalid @enderror" type="number" name="amount" id="amount">
+					<input class="form-control @error('amount') is-invalid @enderror" type="number" name="amount" id="amount" min="1">
 					@error('amount')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
