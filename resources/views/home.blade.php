@@ -105,6 +105,27 @@
                     </div>
                     @endforeach
                 </div>
+                <div class="card">
+                    <div class="card-header"><h2>Your Payed Dues</h2></div>
+                    @foreach($payeddues as $payeddue)
+                    <div class="card-body">
+                        @if($payeddue->user_id === $user->id)
+                        <table class="table">
+                            <tr>
+                                <th scope="col" style="text-align: center;">Amount</th>
+                                <th scope="col" style="text-align: center;">Month</th>
+                            </tr>
+                            <tbody>
+                                <tr>
+                                    <th style="text-align: center;">{{ $payeddue->amount }}</th>
+                                    <th style="text-align: center;">{{ $payeddue->monthlyincome->date }}</th>
+                                </tr>
+                            </tbody>
+                        </table>
+                        @endif
+                    </div>
+                    @endforeach
+                </div>
 
 
                 <div class="card">

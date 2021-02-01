@@ -66,7 +66,8 @@ class HomeController extends Controller
             'user' => $user,
             'unpayeddues' => $unpayeddues,
             'monthlyincomes' => $monthlyincomes,
-            'announcements' => $announcements
+            'announcements' => $announcements,
+            'payeddues' => $payeddues
         ]);
         //return view('home');
     }
