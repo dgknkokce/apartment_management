@@ -86,45 +86,50 @@
 
                 <div class="card">
                     <div class="card-header"><h2>Your Unpayed Dues</h2></div>
-                    @foreach($unpayeddues as $unpayeddue)
-                    <div class="card-body">
+
+                    <div class="card-body" style="overflow:scroll; height:320px;">
+                        @foreach($unpayeddues as $unpayeddue)
                         @if($unpayeddue->user_id === $user->id)
                         <table class="table">
                             <tr>
                                 <th scope="col" style="text-align: center;">Amount</th>
-                                <th scope="col" style="text-align: center;">Month</th>
+                                <th scope="col" style="text-align: center;">Appointed Date<br><b class="text-muted">Month/Year</b></th>
                             </tr>
                             <tbody>
                                 <tr>
                                     <th style="text-align: center;">{{ $unpayeddue->amount }}</th>
-                                    <th style="text-align: center;">{{ $unpayeddue->monthlyincome->date }}</th>
+                                    <th style="text-align: center;">{{ $unpayeddue->monthlyincome->date }}/{{ $unpayeddue->created_at->format('Y') }}</th>
                                 </tr>
                             </tbody>
                         </table>
                         @endif
+                        @endforeach
                     </div>
-                    @endforeach
+
                 </div>
                 <div class="card">
                     <div class="card-header"><h2>Your Payed Dues</h2></div>
-                    @foreach($payeddues as $payeddue)
-                    <div class="card-body">
+
+                    <div class="card-body" style="overflow:scroll; height:320px;">
+                        @foreach($payeddues as $payeddue)
                         @if($payeddue->user_id === $user->id)
                         <table class="table">
                             <tr>
                                 <th scope="col" style="text-align: center;">Amount</th>
-                                <th scope="col" style="text-align: center;">Month</th>
+                                <th scope="col" style="text-align: center;">Appointed Date<br><b class="text-muted">Month/Year</b></th>
+                                <th scope="col" style="text-align: center;">Paid Date<br><b class="text-muted">Day/Month/Year</b></th>
                             </tr>
                             <tbody>
                                 <tr>
                                     <th style="text-align: center;">{{ $payeddue->amount }}</th>
-                                    <th style="text-align: center;">{{ $payeddue->monthlyincome->date }}</th>
+                                    <th style="text-align: center;">{{ $payeddue->monthlyincome->date }}/{{ $payeddue->created_at->format('Y') }}</th>
+                                    <th style="text-align: center;">{{ $payeddue->updated_at->format('d/m/Y') }}</th>
                                 </tr>
                             </tbody>
                         </table>
                         @endif
+                        @endforeach
                     </div>
-                    @endforeach
                 </div>
 
 

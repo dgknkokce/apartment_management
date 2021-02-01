@@ -56,7 +56,7 @@
 					<th scope="col" style="text-align: center;">Full Name</th>
 					<th scope="col" style="text-align: center;">Apartment</th>
 					<th scope="col" style="text-align: center;">Amount</th>
-					<th scope="col" style="text-align: center;">Month</th>
+					<th scope="col" style="text-align: center;">Appointed Date<br><b class="text-muted">Month/Year</b></th>
 					<th scope="col" style="text-align: center;">Actions</th>
 				</tr>
 				<tbody>
@@ -64,7 +64,7 @@
 						<th style="text-align: center;">{{ $unpayeddue->user->fullname }}</th>
 						<th style="text-align: center;">{{ $unpayeddue->user->apartment_id }}</th>
 						<th style="text-align: center;">{{ $unpayeddue->amount }}</th>
-						<th style="text-align: center;">{{ $unpayeddue->monthlyincome->date }}</th>
+						<th style="text-align: center;">{{ $unpayeddue->monthlyincome->date }}/{{ $unpayeddue->created_at->format('Y') }}</th>
 						<th style="text-align: center;">
 							<form method="POST" action="/dues/{{$unpayeddue->id}}">
 								@method('PUT')

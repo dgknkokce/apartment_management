@@ -8,28 +8,28 @@
 			@foreach($wanteddues as $wanteddue)
 			<table class="table" id="table">
 				<tr>
-					<th scope="col">Full Name</th>
-					<th scope="col">Apartment</th>
-					<th scope="col">Amount</th>
-					<th scope="col">Month</th>
+					<th scope="col" style="text-align: center;">Full Name</th>
+					<th scope="col" style="text-align: center;">Apartment</th>
+					<th scope="col" style="text-align: center;">Amount</th>
+					<th scope="col" style="text-align: center;">Appointed Date<br><b class="text-muted">Month/Year</b></th>
 					@if($wanteddue->status === 1)
-					<th scope="col">Payed Date</th>
+					<th scope="col" style="text-align: center;">Payed Date<br><b class="text-muted">Day/Month/Year</b></th>
 					@endif
 					@if($wanteddue->status === 0)
-					<th scope="col">Actions</th>
+					<th scope="col" style="text-align: center;">Actions</th>
 					@endif
 				</tr>
 				<tbody>
 					<tr>
-						<th>{{ $wanteddue->user->fullname }}</th>
-						<th>{{ $wanteddue->user->apartment_id }}</th>
-						<th>{{ $wanteddue->amount }}</th>
-						<th>{{ $wanteddue->monthlyincome->date }}</th>
+						<th style="text-align: center;">{{ $wanteddue->user->fullname }}</th>
+						<th style="text-align: center;">{{ $wanteddue->user->apartment_id }}</th>
+						<th style="text-align: center;">{{ $wanteddue->amount }}</th>
+						<th style="text-align: center;">{{ $wanteddue->monthlyincome->date }}/{{ $wanteddue->created_at->format('Y') }}</th>
 						@if($wanteddue->status === 1)
-						<th>{{ $wanteddue->updated_at->format('m/Y')}}</th>
+						<th style="text-align: center;">{{ $wanteddue->updated_at->format('m/Y')}}</th>
 						@endif
 						@if($wanteddue->status === 0)
-						<th>
+						<th style="text-align: center;">
 							<form method="POST" action="/dues/{{$wanteddue->id}}">
 								@method('PUT')
 								@csrf
