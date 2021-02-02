@@ -26,7 +26,7 @@
 						<th style="text-align: center;">{{ $wanteddue->amount }}</th>
 						<th style="text-align: center;">{{ $wanteddue->monthlyincome->date }}/{{ $wanteddue->created_at->format('Y') }}</th>
 						@if($wanteddue->status === 1)
-						<th style="text-align: center;">{{ $wanteddue->updated_at->format('m/Y')}}</th>
+						<th style="text-align: center;">{{ $wanteddue->updated_at->format('d/m/Y')}}</th>
 						@endif
 						@if($wanteddue->status === 0)
 						<th style="text-align: center;">

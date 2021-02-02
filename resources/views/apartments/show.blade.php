@@ -14,6 +14,15 @@
 	    </select>
   	</div>
   	<div class="form-group">
+	    <label for="year">Select Year</label>
+	    <select class="form-control" id="year" name="year">
+	      	<option id="year" value="2021">2021</option>
+	      	<option id="year" value="2022">2022</option>
+	      	<option id="year" value="2023">2023</option>
+	      	<option id="year" value="2024">2024</option>
+	    </select>
+  	</div>
+  	<div class="form-group">
 	    <label for="selectstatus">Select Status</label>
 	    <select class="form-control" id="status" name="status">
 	      	<option id="status" value="1">Payed</option>

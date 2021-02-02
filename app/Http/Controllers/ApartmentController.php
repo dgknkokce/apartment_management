@@ -122,10 +122,12 @@ class ApartmentController extends Controller
     {
         $this->validate(request(), [
             'month' => 'required',
-            'status' => 'required'
+            'status' => 'required',
+            'year' => 'required'
         ]);
         $authuser = Auth::user();
-        $wanteddues = Due::where('status', request('status'))->where('monthlyincome_id', request('month'))->get();
+        $wanteddues = Due::where('status', request('status'))->where('monthlyincome_id', request('month'))
+        ->whereYear('created_at', '=', request('year'))->get();
 
         if ($authuser->role_id === 1) {
             return view('apartments.showdue', [
