@@ -15,6 +15,7 @@
             @endif
         </div>
 	</div>
+
 	<div class="card">
 		<div class="card-header"><h2>All Users</h2></div>
 		@foreach($users as $user)
